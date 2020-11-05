@@ -16,8 +16,12 @@ $response = array();
 
 switch ($method_page) {
     case "GET":
+        $data = $mahasiswa->all();
+        while ($row = $data->fetch_assoc()) {
+            $result[] = $row;
+        }
         $response["status"] = 200;
-        $response["data"] = $mahasiswa->all("result_array");
+        $response["data"] = $result;
         break;
     case "POST":
         $data['nama'] = $_POST['nama'];
@@ -59,8 +63,12 @@ switch ($method_page) {
         }
         break;
     default:
+        $data = $mahasiswa->all();
+        while ($row = $data->fetch_assoc()) {
+            $result[] = $row;
+        }
         $response["status"] = 200;
-        $response["data"] = $mahasiswa->all("result_array");
+        $response["data"] = $result;;
         break;
 }
 

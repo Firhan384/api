@@ -20,13 +20,20 @@ class Query extends Connect
 
     public function all($result = null)
     {
-        $data = null;
-        if (strcmp("result_array", $result) == 0 || empty($result)) {
-            $data = $this->db->query("SELECT * FROM $this->table")->fetch_assoc();
-        } else if (strcmp("result_object", $result) == 0) {
-            $data = $this->db->query("SELECT * FROM $this->table")->fetch_object();
-        }
+        $data = $this->db->query("SELECT * FROM $this->table");
+        // if (strcmp("result_array", $result) == 0 || empty($result)) {
+        //     $data = $data->fetch_array();
+        // } else if (strcmp("result_object", $result) == 0) {
+        //     $data = $data->fetch_object();
+        // }
+        // $this->db->close();
         return $data;
+    }
+
+    public function query($data)
+    {
+        $result = $this->db->query($data);
+        return $result;
     }
 
     public function insert($data)
